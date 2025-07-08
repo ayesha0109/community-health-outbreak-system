@@ -9,17 +9,17 @@ export const HealthMonitoring: React.FC = () => {
 
   const getStatusIcon = (severity: string) => {
     switch (severity) {
-      case 'high': return <AlertCircle className="w-5 h-5 text-danger-500" />;
-      case 'medium': return <Clock className="w-5 h-5 text-warning-500" />;
-      default: return <CheckCircle className="w-5 h-5 text-success-500" />;
+      case 'high': return <AlertCircle className="w-5 h-5 text-red-500" />;
+      case 'medium': return <Clock className="w-5 h-5 text-yellow-500" />;
+      default: return <CheckCircle className="w-5 h-5 text-green-500" />;
     }
   };
 
   const getStatusColor = (severity: string) => {
     switch (severity) {
-      case 'high': return 'border-danger-200 bg-danger-50';
-      case 'medium': return 'border-warning-200 bg-warning-50';
-      default: return 'border-success-200 bg-success-50';
+      case 'high': return 'border-red-200 bg-red-50';
+      case 'medium': return 'border-yellow-200 bg-yellow-50';
+      default: return 'border-green-200 bg-green-50';
     }
   };
 
@@ -92,24 +92,24 @@ export const HealthMonitoring: React.FC = () => {
             <div className="flex space-x-2">
               <button
                 onClick={() => setTimeRange('24h')}
-                className={`px-3 py-1 text-xs rounded-full ${
-                  timeRange === '24h' ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'
+                className={`px-3 py-1 text-xs rounded-full transition-colors duration-200 ${
+                  timeRange === '24h' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 24h
               </button>
               <button
                 onClick={() => setTimeRange('7d')}
-                className={`px-3 py-1 text-xs rounded-full ${
-                  timeRange === '7d' ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'
+                className={`px-3 py-1 text-xs rounded-full transition-colors duration-200 ${
+                  timeRange === '7d' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 7d
               </button>
               <button
                 onClick={() => setTimeRange('30d')}
-                className={`px-3 py-1 text-xs rounded-full ${
-                  timeRange === '30d' ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'
+                className={`px-3 py-1 text-xs rounded-full transition-colors duration-200 ${
+                  timeRange === '30d' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 30d
@@ -124,7 +124,7 @@ export const HealthMonitoring: React.FC = () => {
                 onClick={() => setSelectedIndicator(indicator)}
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                   selectedIndicator.id === indicator.id
-                    ? 'border-primary-300 bg-primary-50'
+                    ? 'border-blue-300 bg-blue-50'
                     : `${getStatusColor(indicator.severity)} hover:shadow-md`
                 }`}
               >
@@ -157,7 +157,7 @@ export const HealthMonitoring: React.FC = () => {
                 <div className="mt-2 w-full bg-gray-200 rounded-full h-1.5">
                   <div 
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      indicator.value > indicator.threshold ? 'bg-danger-500' : 'bg-success-500'
+                      indicator.value > indicator.threshold ? 'bg-red-500' : 'bg-green-500'
                     }`}
                     style={{ width: `${Math.min((indicator.value / (indicator.threshold * 1.5)) * 100, 100)}%` }}
                   />
@@ -236,8 +236,8 @@ export const HealthMonitoring: React.FC = () => {
             <div className="text-center">
               <p className="text-sm text-gray-600">Status</p>
               <p className={`text-lg font-bold ${
-                selectedIndicator.severity === 'high' ? 'text-danger-600' :
-                selectedIndicator.severity === 'medium' ? 'text-warning-600' : 'text-success-600'
+                selectedIndicator.severity === 'high' ? 'text-red-600' :
+                selectedIndicator.severity === 'medium' ? 'text-yellow-600' : 'text-green-600'
               }`}>
                 {selectedIndicator.severity.toUpperCase()}
               </p>
@@ -246,9 +246,9 @@ export const HealthMonitoring: React.FC = () => {
               <p className="text-sm text-gray-600">Trend</p>
               <div className="flex items-center justify-center">
                 {selectedIndicator.trend === 'up' ? (
-                  <TrendingUp className="w-6 h-6 text-danger-500" />
+                  <TrendingUp className="w-6 h-6 text-red-500" />
                 ) : selectedIndicator.trend === 'down' ? (
-                  <TrendingDown className="w-6 h-6 text-success-500" />
+                  <TrendingDown className="w-6 h-6 text-green-500" />
                 ) : (
                   <span className="text-lg font-bold text-gray-500">STABLE</span>
                 )}

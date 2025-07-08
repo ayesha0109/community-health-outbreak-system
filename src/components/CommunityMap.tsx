@@ -7,9 +7,9 @@ export const CommunityMap: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const getRiskColor = (riskScore: number) => {
-    if (riskScore >= 70) return 'bg-danger-500';
-    if (riskScore >= 50) return 'bg-warning-500';
-    return 'bg-success-500';
+    if (riskScore >= 70) return 'bg-red-500';
+    if (riskScore >= 50) return 'bg-yellow-500';
+    return 'bg-green-500';
   };
 
   const getRiskLevel = (riskScore: number) => {
@@ -19,9 +19,9 @@ export const CommunityMap: React.FC = () => {
   };
 
   const getRiskBadgeColor = (riskScore: number) => {
-    if (riskScore >= 70) return 'bg-danger-100 text-danger-800';
-    if (riskScore >= 50) return 'bg-warning-100 text-warning-800';
-    return 'bg-success-100 text-success-800';
+    if (riskScore >= 70) return 'bg-red-100 text-red-800';
+    if (riskScore >= 50) return 'bg-yellow-100 text-yellow-800';
+    return 'bg-green-100 text-green-800';
   };
 
   const filteredCommunities = communityData.filter(community =>
@@ -75,15 +75,15 @@ export const CommunityMap: React.FC = () => {
             <h4 className="text-sm font-medium text-gray-900 mb-2">Risk Levels</h4>
             <div className="space-y-1">
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-success-500 rounded-full" />
+                <div className="w-3 h-3 bg-green-500 rounded-full" />
                 <span className="text-xs text-gray-600">Low Risk (0-49)</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-warning-500 rounded-full" />
+                <div className="w-3 h-3 bg-yellow-500 rounded-full" />
                 <span className="text-xs text-gray-600">Medium Risk (50-69)</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-danger-500 rounded-full" />
+                <div className="w-3 h-3 bg-red-500 rounded-full" />
                 <span className="text-xs text-gray-600">High Risk (70+)</span>
               </div>
             </div>
@@ -115,7 +115,7 @@ export const CommunityMap: React.FC = () => {
                 onClick={() => setSelectedCommunity(community)}
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                   selectedCommunity.id === community.id
-                    ? 'border-primary-300 bg-primary-50'
+                    ? 'border-blue-300 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
                 }`}
               >

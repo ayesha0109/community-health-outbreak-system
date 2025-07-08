@@ -94,13 +94,13 @@ export const AIModels: React.FC = () => {
               onClick={() => setSelectedModel(model.id)}
               className={`card cursor-pointer transition-all duration-200 ${
                 selectedModel === model.id
-                  ? 'border-primary-300 bg-primary-50 shadow-md'
+                  ? 'border-blue-300 bg-blue-50 shadow-md'
                   : 'hover:shadow-md hover:border-gray-300'
               }`}
             >
               <div className="flex items-center space-x-3 mb-3">
-                <div className="p-2 bg-primary-100 rounded-lg">
-                  <Icon className="w-6 h-6 text-primary-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Icon className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">{model.name}</h4>
@@ -117,7 +117,7 @@ export const AIModels: React.FC = () => {
               
               <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
                 <div 
-                  className="h-2 rounded-full bg-primary-500"
+                  className="h-2 rounded-full bg-blue-500"
                   style={{ width: `${model.accuracy}%` }}
                 />
               </div>
@@ -307,7 +307,7 @@ export const AIModels: React.FC = () => {
               </div>
               <div className="mt-3 flex flex-wrap gap-1">
                 {pattern.peakMonths.map((month) => (
-                  <span key={month} className="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded">
+                  <span key={month} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
                     {new Date(2024, month - 1).toLocaleString('default', { month: 'short' })}
                   </span>
                 ))}
