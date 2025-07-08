@@ -8,17 +8,17 @@ export const OutbreakAlerts: React.FC = () => {
 
   const getRiskColor = (risk: string) => {
     switch (risk) {
-      case 'high': return 'bg-danger-50 border-danger-200 text-danger-800';
-      case 'medium': return 'bg-warning-50 border-warning-200 text-warning-800';
-      default: return 'bg-success-50 border-success-200 text-success-800';
+      case 'high': return 'bg-red-50 border-red-200 text-red-800';
+      case 'medium': return 'bg-yellow-50 border-yellow-200 text-yellow-800';
+      default: return 'bg-green-50 border-green-200 text-green-800';
     }
   };
 
   const getRiskBadgeColor = (risk: string) => {
     switch (risk) {
-      case 'high': return 'bg-danger-100 text-danger-800';
-      case 'medium': return 'bg-warning-100 text-warning-800';
-      default: return 'bg-success-100 text-success-800';
+      case 'high': return 'bg-red-100 text-red-800';
+      case 'medium': return 'bg-yellow-100 text-yellow-800';
+      default: return 'bg-green-100 text-green-800';
     }
   };
 
@@ -40,36 +40,36 @@ export const OutbreakAlerts: React.FC = () => {
     <div className="space-y-6">
       {/* Alert Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card bg-danger-50 border-danger-200">
+        <div className="card bg-red-50 border-red-200">
           <div className="flex items-center space-x-3">
-            <AlertTriangle className="w-8 h-8 text-danger-600" />
+            <AlertTriangle className="w-8 h-8 text-red-600" />
             <div>
-              <p className="text-sm font-medium text-danger-600">High Risk Alerts</p>
-              <p className="text-2xl font-bold text-danger-900">
+              <p className="text-sm font-medium text-red-600">High Risk Alerts</p>
+              <p className="text-2xl font-bold text-red-900">
                 {outbreakAlerts.filter(a => a.riskLevel === 'high').length}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="card bg-warning-50 border-warning-200">
+        <div className="card bg-yellow-50 border-yellow-200">
           <div className="flex items-center space-x-3">
-            <Clock className="w-8 h-8 text-warning-600" />
+            <Clock className="w-8 h-8 text-yellow-600" />
             <div>
-              <p className="text-sm font-medium text-warning-600">Medium Risk Alerts</p>
-              <p className="text-2xl font-bold text-warning-900">
+              <p className="text-sm font-medium text-yellow-600">Medium Risk Alerts</p>
+              <p className="text-2xl font-bold text-yellow-900">
                 {outbreakAlerts.filter(a => a.riskLevel === 'medium').length}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="card bg-primary-50 border-primary-200">
+        <div className="card bg-blue-50 border-blue-200">
           <div className="flex items-center space-x-3">
-            <Users className="w-8 h-8 text-primary-600" />
+            <Users className="w-8 h-8 text-blue-600" />
             <div>
-              <p className="text-sm font-medium text-primary-600">Total Population at Risk</p>
-              <p className="text-2xl font-bold text-primary-900">
+              <p className="text-sm font-medium text-blue-600">Total Population at Risk</p>
+              <p className="text-2xl font-bold text-blue-900">
                 {outbreakAlerts.reduce((sum, alert) => sum + alert.affectedPopulation, 0).toLocaleString()}
               </p>
             </div>
@@ -101,7 +101,7 @@ export const OutbreakAlerts: React.FC = () => {
                 onClick={() => setSelectedAlert(alert)}
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                   selectedAlert.id === alert.id
-                    ? 'border-primary-300 bg-primary-50'
+                    ? 'border-blue-300 bg-blue-50'
                     : `${getRiskColor(alert.riskLevel)} hover:shadow-md`
                 }`}
               >
@@ -127,8 +127,8 @@ export const OutbreakAlerts: React.FC = () => {
                 <div className="mt-2 w-full bg-gray-200 rounded-full h-1.5">
                   <div 
                     className={`h-1.5 rounded-full ${
-                      alert.riskLevel === 'high' ? 'bg-danger-500' :
-                      alert.riskLevel === 'medium' ? 'bg-warning-500' : 'bg-success-500'
+                      alert.riskLevel === 'high' ? 'bg-red-500' :
+                      alert.riskLevel === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
                     }`}
                     style={{ width: `${alert.confidence}%` }}
                   />
@@ -207,7 +207,7 @@ export const OutbreakAlerts: React.FC = () => {
                   
                   <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
                     <div 
-                      className="h-2 rounded-full bg-primary-500"
+                      className="h-2 rounded-full bg-blue-500"
                       style={{ width: `${intervention.effectiveness}%` }}
                     />
                   </div>
