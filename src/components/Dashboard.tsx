@@ -34,13 +34,13 @@ export const Dashboard: React.FC = () => {
     <div className="space-y-6">
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card">
+        <div className="metric-card fade-in">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Active Alerts</p>
-              <p className="text-2xl font-bold text-gray-900">{outbreakAlerts.length}</p>
+              <p className="metric-value">{outbreakAlerts.length}</p>
             </div>
-            <div className="p-3 bg-danger-100 rounded-full">
+            <div className="p-3 bg-gradient-to-br from-danger-100 to-danger-200 rounded-full shadow-md">
               <AlertTriangle className="w-6 h-6 text-danger-600" />
             </div>
           </div>
@@ -50,13 +50,13 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="card">
+        <div className="metric-card fade-in" style={{ animationDelay: '0.1s' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Population at Risk</p>
-              <p className="text-2xl font-bold text-gray-900">{totalPopulationAtRisk.toLocaleString()}</p>
+              <p className="metric-value">{totalPopulationAtRisk.toLocaleString()}</p>
             </div>
-            <div className="p-3 bg-warning-100 rounded-full">
+            <div className="p-3 bg-gradient-to-br from-warning-100 to-warning-200 rounded-full shadow-md">
               <Users className="w-6 h-6 text-warning-600" />
             </div>
           </div>
@@ -66,13 +66,13 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="card">
+        <div className="metric-card fade-in" style={{ animationDelay: '0.2s' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Prediction Confidence</p>
-              <p className="text-2xl font-bold text-gray-900">{averageConfidence.toFixed(0)}%</p>
+              <p className="metric-value">{averageConfidence.toFixed(0)}%</p>
             </div>
-            <div className="p-3 bg-primary-100 rounded-full">
+            <div className="p-3 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full shadow-md">
               <Activity className="w-6 h-6 text-primary-600" />
             </div>
           </div>
@@ -82,13 +82,13 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="card">
+        <div className="metric-card fade-in" style={{ animationDelay: '0.3s' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">System Status</p>
-              <p className="text-2xl font-bold text-success-600">Operational</p>
+              <p className="text-2xl font-bold bg-gradient-to-r from-success-600 to-success-700 bg-clip-text text-transparent">Operational</p>
             </div>
-            <div className="p-3 bg-success-100 rounded-full">
+            <div className="p-3 bg-gradient-to-br from-success-100 to-success-200 rounded-full shadow-md">
               <Activity className="w-6 h-6 text-success-600 animate-pulse" />
             </div>
           </div>
@@ -101,7 +101,7 @@ export const Dashboard: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Health Indicators Trend */}
-        <div className="card">
+        <div className="chart-container slide-up">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Health Indicators Trend</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -129,7 +129,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* Risk Distribution */}
-        <div className="card">
+        <div className="chart-container slide-up" style={{ animationDelay: '0.2s' }}>
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Community Risk Distribution</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -166,11 +166,11 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* Current Health Indicators */}
-      <div className="card">
+      <div className="card slide-up" style={{ animationDelay: '0.4s' }}>
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Health Indicators</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {healthIndicators.map((indicator) => (
-            <div key={indicator.id} className="p-4 border border-gray-200 rounded-lg">
+            <div key={indicator.id} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200 bg-gradient-to-br from-white to-gray-50">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium text-gray-900">{indicator.name}</h4>
                 {getTrendIcon(indicator.trend)}
@@ -189,8 +189,8 @@ export const Dashboard: React.FC = () => {
               </div>
               <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
                 <div 
-                  className={`h-2 rounded-full ${
-                    indicator.value > indicator.threshold ? 'bg-danger-500' : 'bg-success-500'
+                  className={`h-2 rounded-full transition-all duration-500 ${
+                    indicator.value > indicator.threshold ? 'progress-fill-danger' : 'progress-fill-success'
                   }`}
                   style={{ width: `${Math.min((indicator.value / indicator.threshold) * 100, 100)}%` }}
                 />
